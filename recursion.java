@@ -1,4 +1,7 @@
 import java.lang.*;
+import java.util.ArrayList;
+
+// i wasn't going to use helper methods but got the helpful tip from vishwaa (thankfully)
 public class recursion{
     /*You may write additional private methods */
 
@@ -7,16 +10,27 @@ public class recursion{
      *precondition: n is non-negative
     */
     public static double sqrt(double n, double tolerance){
-      double guess = 1.0;
-      double real = Math.sqrt(n);
-      if (Math.abs(real - guess) / real <= tolerance){
-        guess = (n / guess + guess) / 2;
+      // just chose 1.0 to start with
+      // might change to n / 2 ?
+      return sqrtHelper(n, 1.0, tolerance);
+    }
+
+    public static double sqrtHelper(double n, double guess, double tol){
+      // we don't need to worry about negative numbers because it's a precondition
+
+      // zero and one base case
+      if (n == 0 || n == 1){
+        return n;
       }
-      if (n <= 0){
-        return 0;
+
+      // if the perecent error is fine, return the guess
+      if (Math.abs(guess * guess - n) < n * tol){
+        return g;
       }
+
+      // if there is too much of a percent error, do it again
       else{
-        return guess; // negative and zero
+        return sqrtHelper(n, (n / guess + guess) / 2, tol);
       }
     }
 
@@ -27,20 +41,39 @@ public class recursion{
      *precondition: n is non-negative
      */
     public static int fib(int n){
+      return fibHelper(n, 0, 1);
+    }
+
+    public static int fibHelper(int n, int x, int y){
+      // base case zero
       if (n == 0){
         return 0;
       }
-      if (n == 1){
+
+      // base case one and two
+      if (n == 1 || n == 2){
         return 1;
       }
-      else{
-        return fib(n-1) + fib(n-2);
-      }
+
+      return fibHelper(n - 1, y, y+x);
     }
 
     /*As Per classwork*/
     public static ArrayList<Integer> makeAllSums(int n){
-      return [1,1,1];
+      ArrayList<Integer> sum = new ArrayList<Integer>();
+      makeAllSumsHelper(n, 0, sum);
+      return sum;
     }
 
+    public static void makeAllSumsHelper(int n, int current, ArrayList<Integer> sum){
+      // base case
+      if (n == 0){
+        sum.add(current);
+      }
+
+      else{
+        makeAllSumsHelper(n - 1, current, sum);
+        makeAllSumsHelper(n - 1, current + n, sum);
+      }
+    }
 }
