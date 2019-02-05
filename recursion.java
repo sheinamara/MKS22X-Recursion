@@ -3,6 +3,10 @@ import java.util.ArrayList;
 
 // i wasn't going to use helper methods but got the helpful tip from vishwaa (thankfully)
 public class recursion{
+    ////////////
+    // CODING //
+    ////////////
+
     /*You may write additional private methods */
 
     /*Recursively find the sqrt using Newton's approximation
@@ -25,7 +29,7 @@ public class recursion{
 
       // if the perecent error is fine, return the guess
       if (Math.abs(guess * guess - n) < n * tol){
-        return g;
+        return guess;
       }
 
       // if there is too much of a percent error, do it again
@@ -52,7 +56,7 @@ public class recursion{
 
       // base case one and two
       if (n == 1 || n == 2){
-        return 1;
+        return y;
       }
 
       return fibHelper(n - 1, y, y+x);
@@ -75,5 +79,30 @@ public class recursion{
         makeAllSumsHelper(n - 1, current, sum);
         makeAllSumsHelper(n - 1, current + n, sum);
       }
+    }
+
+    /////////////
+    // TESTING //
+    /////////////
+    public static void main(String[] args){
+      System.out.println("Testing sqrt!!!\n");
+      System.out.println(sqrt(36,.0001));
+      System.out.println(sqrt(35,.00001));
+      System.out.println(sqrt(100,.0001) + "\n");
+
+      System.out.println("Testing fib!!!\n");
+      System.out.println(fib(0));
+      System.out.println(fib(1));
+      System.out.println(fib(2));
+      System.out.println(fib(3));
+      System.out.println(fib(4));
+      System.out.println(fib(5));
+      System.out.println(fib(6) + "\n");
+
+      System.out.println("Testing makeAllSums!!!\n");
+      System.out.println(makeAllSums(0));
+      System.out.println(makeAllSums(1));
+      System.out.println(makeAllSums(2));
+      System.out.println(makeAllSums(3));
     }
 }
