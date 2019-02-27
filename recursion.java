@@ -122,13 +122,16 @@ public class recursion{
     }
 
     public static int fibHelper(int n, int x, int y){
+      if (n < 0){
+        throw new IllegalArgumentException("We cannot use negative numbers!");
+      }
       // base case zero
       if (n == 0){
         return 0;
       }
 
-      // base case one and two
-      if (n == 1 || n == 2){
+      // base case one 
+      if (n == 1){
         return y;
       }
 
@@ -158,6 +161,18 @@ public class recursion{
     // TESTING //
     /////////////
     public static void main(String[] args){
+      testFib(0);
+      testFib(1);
+      testFib(2);
+      testFib(3);
+      testFib(4);
+      testFib(5);
+      testSqrt(0);
+      testSqrt(1);
+      testSqrt(2);
+      testSqrt(3);
+      testSqrt(4);
+      /*
       System.out.println("Testing sqrt!!!\n");
       System.out.println(sqrt(36,.0001));
       System.out.println(sqrt(35,.00001));
@@ -177,5 +192,6 @@ public class recursion{
       System.out.println(makeAllSums(1));
       System.out.println(makeAllSums(2));
       System.out.println(makeAllSums(3));
+      */
     }
 }
